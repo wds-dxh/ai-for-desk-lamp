@@ -22,6 +22,14 @@ struct RGBColor {
     uint8_t blue;
 };
 
+/**
+ * @file 台灯控制类
+ * @brief 用于控制台灯的开关、亮度、颜色等
+ * @param luminance_int 亮度
+ * @param LED_COUNT_int 灯珠数量
+ * @param LED_PIN_int   控制引脚
+ * @param color_int     颜色
+*/
 class Lamp
 {
 private:
@@ -39,18 +47,7 @@ public:
     void lamp_white(); //控制灯光为白色（开灯）
     void lamp_off(); //控制灯光为黑色（关灯）
 
-
-
-
-
-
 };
-
-
-
-
-
-
 
 
 #endif // __LAMP_H__

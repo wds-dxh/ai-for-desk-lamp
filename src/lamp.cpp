@@ -1,7 +1,7 @@
 /**
  * @file 灯光控制（ws2812b）
  * @author wds
- * @date 2023/10/18
+ * @date 2023/10/8
  * 邮箱：wdsnpshy@163.com
  * 博客：https://blog.csdn.net/weixin_63211230
  * qq:3412363587

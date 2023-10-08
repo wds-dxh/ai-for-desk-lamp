@@ -7,14 +7,6 @@
  * qq:3412363587
  */
 
-#include <Arduino.h>
-//反反复复烦烦烦
-
-
-
-
-
-
 void setup() {
 
 }

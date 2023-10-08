@@ -10,6 +10,11 @@
 */
 #include <stdint.h>
 
+#include "Adafruit_NeoPixel.h"    //包含头文件
+#ifdef __AVR__
+  #include <avr/power.h>
+#endif
+
 //定义RGB颜色结构体
 struct RGBColor {
     uint8_t red;
@@ -24,10 +29,11 @@ private:
     uint8_t LED_COUNT; //灯珠数量
     uint8_t LED_PIN;   //控制引脚
     RGBColor color;    //颜色
+    Adafruit_NeoPixel strip; // 声明为成员变量
 
 public:
 
-    void lamp(uint8_t luminance,uint8_t LED_COUNT, uint8_t LED_PIN,RGBColor color_int); //构造函数
+    Lamp(uint8_t luminance_int,uint8_t LED_COUNT_int, uint8_t LED_PIN_int,RGBColor color_int); //构造函数
     void lamp_color(RGBColor color_transfer);  // 控制全部灯光
     void lamp_luminance(uint8_t luminance_transfer); //控制亮度
     void lamp_white(); //控制灯光为白色（开灯）

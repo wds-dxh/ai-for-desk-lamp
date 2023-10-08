@@ -7,6 +7,11 @@
  * qq:3412363587
  */
 
+#include <Arduino.h>
+#include <lamp.h>
+
+
+
 void setup() {
 
 }

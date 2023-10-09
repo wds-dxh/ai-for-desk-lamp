@@ -35,6 +35,9 @@ Voice_prompt :: Voice_prompt(uint8_t VOICE_PROMPT_PIN_correct_int,uint8_t VOICE_
 }
 
 
+
+
+
 /**
  * @brief 语音提示模块运行
  * @param sign 语音提示模块运行标志位

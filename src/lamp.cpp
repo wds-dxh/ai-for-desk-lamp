@@ -7,7 +7,7 @@
  * qq:3412363587
  */
 
-#include <lamp.h>
+#include "Lamp.h"
 
 /**
  * @brief 构造函数

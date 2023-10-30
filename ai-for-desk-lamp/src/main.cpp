@@ -16,7 +16,7 @@
 #include <Speech_recognition.h>     // 包含 Speech_recognition 库的头文件
 
 RGBColor color = {255,255,255};//定义一个颜色结构体
-Lamp lamp(255,144,2,color);//定义一个lamp对象
+Lamp lamp(255,10,2,color);//定义一个lamp对象0
 Voice_prompt voice_prompt(5,18,19,23);//定义一个voice_prompt对象
 Human_detection human_detection(Serial2,256000,16,17);//定义一个human_detection对象
 // Speech_recognition speech_recognition(true,0,"xiao ya",
@@ -34,6 +34,5 @@ void loop() {
         lamp.lamp_white(); //控制灯光为白色（开灯）
         Serial.println("lamp_white");
         delay(1000);
-
+        voice_prompt.Vioce_prompt_run(1); //语音播报
 }
-

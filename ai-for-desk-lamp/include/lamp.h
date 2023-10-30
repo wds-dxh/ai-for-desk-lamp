@@ -43,6 +43,7 @@ public:
 
     Lamp(uint8_t luminance_int,uint8_t LED_COUNT_int, uint8_t LED_PIN_int,RGBColor color_int); //构造函数
     void lamp_color(RGBColor color_transfer);  // 控制全部灯光
+    
     void lamp_luminance(uint8_t luminance_transfer); //控制亮度
     void lamp_white(); //控制灯光为白色（开灯）
     void lamp_off(); //控制灯光为黑色（关灯）

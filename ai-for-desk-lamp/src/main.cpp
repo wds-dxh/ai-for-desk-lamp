@@ -26,11 +26,12 @@ void setup() {
 }
 
 void loop() {
-    FrameData frameData;//定义一个帧内数据结构体
+    // FrameData frameData;//定义一个帧内数据结构体
     lamp.lamp_white(); //控制灯光为白色（开灯）
-    voice_prompt.Vioce_prompt_run(0); //语音提示模块运行（姿态正确）
-    frameData = human_detection.readFrameData(); //人体检测模块运行
-    speech_recognition.Speech_get_result(0); //语音识别模块运行 
+    
+    // voice_prompt.Vioce_prompt_run(0); //语音提示模块运行（姿态正确）
+    // frameData = human_detection.readFrameData(); //人体检测模块运行
+    // speech_recognition.Speech_get_result(0); //语音识别模块运行 
    
     
 }

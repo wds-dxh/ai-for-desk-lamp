@@ -6,6 +6,8 @@
  * 博客：https://blog.csdn.net/weixin_63211230
  * qq:3412363587
  */
+#include <soc/soc.h> 
+#include <soc/rtc_cntl_reg.h>  //关闭低电压检测,避免无限重启
 
 #include <Arduino.h>
 #include <lamp.h>                   // 包含 lamp 库的头文件
@@ -17,22 +19,21 @@ RGBColor color = {255,255,255};//定义一个颜色结构体
 Lamp lamp(255,144,2,color);//定义一个lamp对象
 Voice_prompt voice_prompt(5,18,19,23);//定义一个voice_prompt对象
 Human_detection human_detection(Serial2,256000,16,17);//定义一个human_detection对象
-Speech_recognition speech_recognition(true,115200,"xiao ya",
-"hong deng","lv deng","lan deng","bai deng","hui deng","guan deng");//定义一个speech_recognition对象
+// Speech_recognition speech_recognition(true,0,"xiao ya",
+// "hong deng","lv deng","lan deng","bai deng","hui deng","guan deng");//定义一个speech_recognition对象
 
 void setup() {
-
-
+    WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);//关闭低电压检测,避免无限重启
+    Serial.begin(115200);//初始化串口
+    delay(1000);
+    Serial.println("草泥马");
 }
 
 void loop() {
-    // FrameData frameData;//定义一个帧内数据结构体
-    lamp.lamp_white(); //控制灯光为白色（开灯）
-    
-    // voice_prompt.Vioce_prompt_run(0); //语音提示模块运行（姿态正确）
-    // frameData = human_detection.readFrameData(); //人体检测模块运行
-    // speech_recognition.Speech_get_result(0); //语音识别模块运行 
-   
-    
+
+        lamp.lamp_white(); //控制灯光为白色（开灯）
+        Serial.println("lamp_white");
+        delay(1000);
+
 }
 

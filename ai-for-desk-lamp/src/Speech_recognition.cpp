@@ -34,6 +34,7 @@ words6(words6_int),words7(words7_int){
     unsigned char asr_version = 0;  // 定义并初始化 asr_version 变量为 0
     Wire.begin();  // 初始化 I2C 总线
     Wire.setClock(100000);  // 设置 I2C 通信速率为 100000（100kHz）
+    
     #if serial_int
     Serial.begin(115200);  // 初始化串口通信，波特率设置为 115200
     #endif

@@ -17,17 +17,19 @@
  * @param color_int     颜色
  * @return 无
 */
-Lamp :: Lamp(uint8_t luminance_int,uint8_t LED_COUNT_int, uint8_t LED_PIN_int,RGBColor color_int)
+Lamp :: Lamp(uint8_t luminance_int,uint16_t LED_COUNT_int, int16_t LED_PIN_int,RGBColor color_int)
     : strip(LED_COUNT_int, LED_PIN_int, NEO_GRB + NEO_KHZ800)      {     //定义灯光对象 
         luminance = luminance_int; //将传入的亮度赋值给类的亮度，方便亮度管理
         LED_COUNT = LED_COUNT_int; //将传入的灯珠数量赋值给类的灯珠数量，方便灯珠数量管理
         LED_PIN = LED_PIN_int;     //将传入的控制引脚赋值给类的控制引脚，方便控制引脚管理
         color = color_int; //将传入的颜色赋值给类的颜色，方便颜色管理
 
-        strip.begin();  //初始化
-        strip.setPixelColor(1,color.red, color.green, color.blue); //初始化灯光颜色
-        strip.show();
+        strip.begin();  //初始化灯光
+        // strip.show();
         strip.setBrightness(luminance);  //设置灯光亮度
+
+        Serial.begin(115200);//初始化串口
+        Serial.println("Lamp init success");
 }
 
 
@@ -39,10 +41,10 @@ Lamp :: Lamp(uint8_t luminance_int,uint8_t LED_COUNT_int, uint8_t LED_PIN_int,RG
 void Lamp :: lamp_color(RGBColor color_transfer){
     // Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 for (int i = 0; i < LED_COUNT; i++) {
-   strip.setPixelColor(i, color_transfer.red, color_transfer.green, color_transfer.blue); //设置灯光颜色
-
+    strip.setPixelColor(i, color_transfer.red, color_transfer.green, color_transfer.blue); //设置灯光颜色
+    strip.show();
   }
-  strip.show();
+  
 
 }
 
@@ -70,7 +72,7 @@ void Lamp :: lamp_white(){
 for (int i = 0; i < LED_COUNT; i++) {
     strip.setPixelColor(i, 255, 255, 255); //设置灯光颜色
     strip.show();
-    delay(100);
+    delay(10);
       }
       
 }
@@ -82,11 +84,11 @@ for (int i = 0; i < LED_COUNT; i++) {
 */
 void Lamp :: lamp_off(){
     // Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
-for (int i = 0; i < LED_COUNT; i++) {
+    for (int i = 0; i < LED_COUNT; i++) {
     strip.setPixelColor(i, 0, 0, 0); //设置灯光颜色
+    strip.show();
       }
-      strip.show();
+      
     
 }
-
 

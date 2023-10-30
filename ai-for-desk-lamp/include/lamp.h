@@ -34,14 +34,14 @@ class Lamp
 {
 private:
     uint8_t luminance; //亮度
-    uint8_t LED_COUNT; //灯珠数量
-    uint8_t LED_PIN;   //控制引脚
+    uint16_t LED_COUNT; //灯珠数量
+    int16_t LED_PIN;   //控制引脚
     RGBColor color;    //颜色
     Adafruit_NeoPixel strip; // 声明为成员变量
 
 public:
 
-    Lamp(uint8_t luminance_int,uint8_t LED_COUNT_int, uint8_t LED_PIN_int,RGBColor color_int); //构造函数
+    Lamp(uint8_t luminance_int,uint16_t LED_COUNT_int, int16_t LED_PIN_int,RGBColor color_int); //构造函数
     void lamp_color(RGBColor color_transfer);  // 控制全部灯光
     
     void lamp_luminance(uint8_t luminance_transfer); //控制亮度

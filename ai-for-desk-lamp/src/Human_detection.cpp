@@ -22,6 +22,8 @@ Human_detection :: Human_detection(HardwareSerial& serial_int,uint32_t baudRate_
 
   // 初始化串口
   serial.begin(baudRate, SERIAL_8N1, rxPin, txPin);
+  //初始化输入引脚27
+  pinMode(27, INPUT);
 }
 
 
@@ -32,15 +34,16 @@ Human_detection :: Human_detection(HardwareSerial& serial_int,uint32_t baudRate_
 FrameData Human_detection :: readFrameData(){
   if (serial.available()) {
     // 读取帧头部
-    uint8_t header[4];
-    for (int i = 0; i < 4; i++) {
+    uint8_t header[6];
+    for (int i = 0; i < 6; i++) {
       header[i] = serial.read();
     }
 
     // 检查帧头部是否匹配
-    if (header[0] == 0xF4 && header[1] == 0xF3 && header[2] == 0xF2 && header[3] == 0xF1) {
+    if (header[0] == 0xF4 && header[1] == 0xF3 && header[2] == 0xF2 && header[3] == 0xF1 && header[4] == 0x0D && header[5] == 0x00) {
+    Serial.println("ok ok ok ok ");
       // 读取帧内数据长度
-      uint16_t dataLength = serial.read() << 8 | serial.read();  // 读取帧内数据长度,高8位左移8位，低8位或运算
+      // uint16_t dataLength = serial.read() << 8 | serial.read();  // 读取帧内数据长度,高8位左移8位，低8位或运算
 
       // 创建帧内数据对象
       FrameData frameData;
@@ -67,17 +70,30 @@ FrameData Human_detection :: readFrameData(){
 */
 void Human_detection :: frameData_show(HardwareSerial& serial_show,FrameData frameData){
   // 打印帧内数据
-  serial_show.print("Target Status: ");
+  // serial_show.print("Target Status: ");
   serial_show.println(frameData.targetStatus);
-  serial_show.print("Target Distance: ");
-  serial_show.println(frameData.targetDistance);
-  serial_show.print("Target Energy: ");
-  serial_show.println(frameData.targetEnergy);
-  serial_show.print("Stationary Distance: ");
-  serial_show.println(frameData.stationaryDistance);
-  serial_show.print("Stationary Energy: ");
-  serial_show.println(frameData.stationaryEnergy);
-  serial_show.print("Detection Distance: ");
-  serial_show.println(frameData.detectionDistance);
+  // serial_show.print("Target Distance: ");
+  // serial_show.println(frameData.targetDistance);
+  // serial_show.print("Target Energy: ");
+  // serial_show.println(frameData.targetEnergy);
+  // serial_show.print("Stationary Distance: ");
+  // serial_show.println(frameData.stationaryDistance);
+  // serial_show.print("Stationary Energy: ");
+  // serial_show.println(frameData.stationaryEnergy);
+  // serial_show.print("Detection Distance: ");
+  // serial_show.println(frameData.detectionDistance);
+}
+
+
+/**
+ * @brief 判断是否有人
+ * @return bool 有人返回true，无人返回false
+*/
+bool Human_detection :: isHuman(){
+  if (digitalRead(27) == HIGH) {
+    return true;
+  } else {
+    return false;
+  }
 }
 

@@ -26,13 +26,21 @@ void setup() {
     WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);//关闭低电压检测,避免无限重启
     Serial.begin(115200);//初始化串口
     delay(1000);
-    Serial.println("草泥马");
+
 }
 
 void loop() {
 
+        if (human_detection.isHuman() == true){
         lamp.lamp_white(); //控制灯光为白色（开灯）
-        Serial.println("lamp_white");
-        delay(1000);
-        voice_prompt.Vioce_prompt_run(1); //语音播报
+        }
+        else{
+        lamp.lamp_off(); //控制灯光为关闭
+        }
+        Serial.println(human_detection.isHuman());
+
+
+        
+
+       
 }

@@ -1,15 +1,16 @@
 #ifndef __HUMAN_DETECTION_H__
 #define __HUMAN_DETECTION_H__
-#include "stdint.h"
+
+#include <Arduino.h>
 
 // 帧内数据结构体
 typedef struct {
-  uint8_t targetStatus;
-  uint16_t targetDistance;
-  uint8_t targetEnergy;
-  uint16_t stationaryDistance;
-  uint8_t stationaryEnergy;
-  uint16_t detectionDistance;
+  byte targetStatus;         // 0: 无人 1: 有人
+  uint16_t targetDistance;      // 目标距离
+  uint8_t targetEnergy;         // 目标能量
+  uint16_t stationaryDistance;  // 静止目标距离
+  uint8_t stationaryEnergy;     // 静止目标能量
+  uint16_t detectionDistance;   // 检测距离
 } FrameData;
 
 
@@ -33,6 +34,7 @@ public:
     Human_detection(HardwareSerial& serial_int, uint32_t baudRate_int, uint8_t rxPin_int, uint8_t txPin_int);// 构造函数
     FrameData readFrameData();// 读取帧内数据
     void frameData_show(HardwareSerial& serial_show,FrameData frameData);// 显示帧内数据
+    bool isHuman();// 判断是否有人
  
 };
 

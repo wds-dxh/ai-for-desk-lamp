@@ -28,8 +28,6 @@ Lamp :: Lamp(uint8_t luminance_int,uint16_t LED_COUNT_int, int16_t LED_PIN_int,R
         // strip.show();
         strip.setBrightness(luminance);  //设置灯光亮度
 
-        Serial.begin(115200);//初始化串口
-        Serial.println("Lamp init success");
 }
 
 
@@ -72,7 +70,6 @@ void Lamp :: lamp_white(){
 for (int i = 0; i < LED_COUNT; i++) {
     strip.setPixelColor(i, 255, 255, 255); //设置灯光颜色
     strip.show();
-    delay(10);
       }
       
 }
